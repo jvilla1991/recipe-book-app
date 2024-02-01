@@ -6,19 +6,15 @@ import { ShoppingListService } from './shopping-list.service';
   selector: 'app-shopping-list',
   templateUrl: './shopping-list.component.html',
   styleUrls: ['./shopping-list.component.css'],
-  providers: [ShoppingListService]
+  providers: []
 })
 export class ShoppingListComponent implements OnInit {
-  ingredients: Ingredient[] = [
-    new Ingredient('Apples', 2),
-    new Ingredient('Tomatoes', 10)
-  ];
-  constructor() { }
+  ingredients: Ingredient[];
+
+  constructor(private shoppingListService: ShoppingListService) { }
 
   ngOnInit(): void {
+    this.ingredients = this.shoppingListService.getIngredients();
   }
 
-  addIngredientToList(ingredient: Ingredient) {
-    this.ingredients.push(ingredient);
-  }
 }
